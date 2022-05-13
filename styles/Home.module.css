@@ -112,10 +112,6 @@
   text-align: center;
 }
 
-.nature {
-  background-color: rgba(50, 230, 0, 0.5);
-}
-
 @media (max-width: 600px) {
   .grid {
     width: 100%;

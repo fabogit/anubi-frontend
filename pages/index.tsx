@@ -32,7 +32,9 @@ const Home: NextPage<{ data: Transactions }> = ({ data }) => {
         <Image src={"/logo.png"} width={120} height={32} />
         {/* Add your component here */}
 
+
         <section>
+          
           <table className={styles.table}>
             <thead>
               <tr>
@@ -47,7 +49,7 @@ const Home: NextPage<{ data: Transactions }> = ({ data }) => {
                   <td>{text.createdOn.slice(0, 19).replace('T', ' ')}</td>
                   <td>{text.user.id}</td>
                   <td>{text.amount}</td>
-                  <td className={styles.nature}>{text.nature.code}</td>
+                  <td className="font-bold bg-[#32e60080] rounded-lg">{text.nature.code}</td>
                   <td>{text.asset}</td>
                   <td>{text.id}</td>
                 </tr>
@@ -55,6 +57,16 @@ const Home: NextPage<{ data: Transactions }> = ({ data }) => {
             </tbody>
           </table>
         </section>
+
+        <br />
+        
+        <div className="flex flex-wrap justify-center">
+          <img
+            src="/tailwind-thumb.jpg"
+            className="max-w-sm h-auto transition-shadow ease-in-out duration-300 shadow-none hover:shadow-xl rounded-lg w-20 h-20" 
+            alt="tailwind-logo"
+          />
+        </div>
       </main>
 
       <footer className={styles.footer}>
