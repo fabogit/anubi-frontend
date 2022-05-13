@@ -2,7 +2,10 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+Before start the frontend have the backend server
+running on localhost:3081 (it's needed for the api call)
+
+Then run the development server:
 
 ```bash
 npm run dev
