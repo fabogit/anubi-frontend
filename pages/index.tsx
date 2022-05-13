@@ -1,9 +1,21 @@
-import type { NextPage } from "next";
+import type { NextPage, GetServerSideProps } from "next";
 import Head from "next/head";
 import Image from "next/image";
+
+import axios from "axios"
+
+import { Transactions } from "./api/interfaceRepository";
 import styles from "../styles/Home.module.css";
 
-const Home: NextPage = () => {
+export const getServerSideProps: GetServerSideProps = async () => {
+  // Fetch data from external API
+  const { data } = await axios.get("http://localhost:3081/v1/transactions");
+ return { props: { data } }; // will be passed to the page component as props
+};
+
+const header = ["Transaction Date", "User Id", "Amount", "Nature", "Asset", "Transaction Id"];
+
+const Home: NextPage<{ data: Transactions }> = ({ data }) => {
   return (
     <div className={styles.container}>
       <Head>
@@ -19,6 +31,30 @@ const Home: NextPage = () => {
         </p>
         <Image src={"/logo.png"} width={120} height={32} />
         {/* Add your component here */}
+
+        <section>
+          <table className={styles.table}>
+            <thead>
+              <tr>
+                {header.map((text, index) => 
+                <th key={index}>{text}</th>
+                )}
+              </tr>
+            </thead>
+            <tbody>
+              {Object.values(data).map((text, index) => (
+                <tr key={index}>
+                  <td>{text.createdOn.slice(0, 19).replace('T', ' ')}</td>
+                  <td>{text.user.id}</td>
+                  <td>{text.amount}</td>
+                  <td>{text.nature.code}</td>
+                  <td>{text.asset}</td>
+                  <td>{text.id}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </section>
       </main>
 
       <footer className={styles.footer}>
@@ -27,7 +63,7 @@ const Home: NextPage = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{" "}
+          Powered by {" fabo "}
           <span className={styles.logo}>
             <Image src="/logo.png" alt="Vercel Logo" width={120} height={32} />
           </span>
