@@ -47,7 +47,7 @@ const Home: NextPage<{ data: Transactions }> = ({ data }) => {
                   <td>{text.createdOn.slice(0, 19).replace('T', ' ')}</td>
                   <td>{text.user.id}</td>
                   <td>{text.amount}</td>
-                  <td>{text.nature.code}</td>
+                  <td className={styles.nature}>{text.nature.code}</td>
                   <td>{text.asset}</td>
                   <td>{text.id}</td>
                 </tr>
